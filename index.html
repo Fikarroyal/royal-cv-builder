@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Royal CV Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&family=DM+Sans:wght@400;500;700&family=Manrope:wght@400;600;700&family=Outfit:wght@400;500;600&family=Lora:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/templates.css">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+</head>
+<body data-view="dashboard" data-pane="edit">
+<nav id="side" aria-label="Navigasi utama">
+  <div class="brand"><i data-lucide="file-user"></i><b>Royal CV Builder</b><button class="ib rail-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false"><i data-lucide="menu" class="i-open"></i><i data-lucide="x" class="i-close"></i></button></div>
+  <button data-go="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+  <button data-go="editor" data-pane="edit"><i data-lucide="square-pen"></i><span>Editor CV</span></button>
+  <button data-go="templates"><i data-lucide="layout-template"></i><span>Template</span></button>
+  <button data-go="cvs"><i data-lucide="folder-open"></i><span>CV Saya</span></button>
+  <button data-go="ats"><i data-lucide="clipboard-check"></i><span>ATS Checker</span></button>
+</nav>
+<div id="main">
+  <header id="top">
+    <div class="tl">
+      <input id="cvName" aria-label="Nama CV" placeholder="Nama CV">
+      <span id="saveState"><i data-lucide="check"></i>Tersimpan</span>
+    </div>
+    <div class="tools">
+      <div class="grp">
+        <button class="ib" id="undo" data-a="undo" aria-label="Undo" title="Undo (Ctrl+Z)"><i data-lucide="undo-2"></i></button>
+        <button class="ib" id="redo" data-a="redo" aria-label="Redo" title="Redo (Ctrl+Shift+Z)"><i data-lucide="redo-2"></i></button>
+      </div>
+      <div class="grp ed-only">
+        <button class="ib" data-a="zout" aria-label="Perkecil" title="Perkecil"><i data-lucide="minus"></i></button>
+        <span id="zl">100%</span>
+        <button class="ib" data-a="zin" aria-label="Perbesar" title="Perbesar"><i data-lucide="plus"></i></button>
+      </div>
+      <button class="btn hide-m" data-a="share" aria-label="Bagikan" title="Bagikan"><i data-lucide="share-2"></i><span>Bagikan</span></button>
+      <button class="btn hide-m" data-a="print" aria-label="Cetak" title="Cetak (Ctrl+P)"><i data-lucide="printer"></i><span>Cetak</span></button>
+      <button class="btn pri" id="pdfBtn" data-a="pdf" aria-label="Unduh PDF" title="Unduh PDF (Ctrl+E)"><i data-lucide="download"></i><span>Unduh PDF</span></button>
+    </div>
+  </header>
+  <section id="v-dashboard" class="view" aria-label="Dashboard"></section>
+  <section id="v-editor" class="view" aria-label="Editor CV">
+    <div class="seg" role="tablist" aria-label="Mode editor">
+      <div class="segb"><button role="tab" data-pane="edit"><i data-lucide="square-pen"></i>Edit</button><button role="tab" data-pane="preview"><i data-lucide="eye"></i>Preview</button></div>
+      <div class="segx"><button class="ib" data-a="share" aria-label="Bagikan"><i data-lucide="share-2"></i></button><button class="ib" data-a="print" aria-label="Cetak"><i data-lucide="printer"></i></button></div>
+    </div>
+    <div id="editor"></div>
+    <div id="preview"><div class="paper" id="paper"></div></div>
+  </section>
+  <section id="v-templates" class="view" aria-label="Galeri template"></section>
+  <section id="v-cvs" class="view" aria-label="CV saya"></section>
+  <section id="v-ats" class="view" aria-label="ATS Checker"></section>
+</div>
+<div id="scrim"></div>
+<div id="navtip" role="status"></div>
+<div id="toasts" aria-live="polite"></div>
+<div id="modal" hidden></div>
+<div id="pr"></div>
+<input type="file" id="photoIn" accept="image/*" hidden>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="js/state.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/ats.js"></script>
+<script src="js/app.js"></script>
+<script src="js/features.js"></script>
+</body>
+</html>
